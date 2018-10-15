@@ -1,0 +1,25 @@
+<nav class="nav-extended">
+  <div class="container">
+    <div class="nav-wrapper">
+      <a (click)="GoToHome()" class="brand-logo">Chatter</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <a href="sass.html">Sass</a>
+        </li>
+        <li>
+          <a href="badges.html">Components</a>
+        </li>
+        <li>
+          <a (click)=logout()>Logout</a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-content">
+      <div class="nav-div">
+        <img class="circle-respons-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGIhsgOg8v0G6sKe9CPsZWv3EKs6snQx6OmvEyyLvV2WTAS3d_uQ"> 
+      </div>
+      <h1 class="profile-name">{{user.username}}</h1>
+      <p class="user-text">This is a test.</p>
+    </div>
+  </div>
+</nav>

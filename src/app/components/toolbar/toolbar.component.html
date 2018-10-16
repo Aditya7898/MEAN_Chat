@@ -3,20 +3,37 @@
     <div class="nav-wrapper">
       <a (click)="GoToHome()" class="brand-logo">Chatter</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li>
-          <a href="sass.html">Sass</a>
+
+        <li class="dropdown-button dropdown-trigger" data-target="dropdown">
+        <i class="fa fa-envelope" aria-hidden="true">
+            <span class="nav-label-icon" *ngIf="count.length > 0">{{count.length}}</span>
+        </i>
+  
+          <ul id='dropdown' class='dropdown-content col s12 collection'>
+            <li class="collection-item avatar" *ngFor="let notification of notifications">
+              <img src="../../../assets/user.jpg" alt="" class="circle">
+              <span [ngClass]="notification.read ? 'isRead' : 'unread'">{{notification.message}}</span>
+              <p>{{TimeFromNow(notification.created)}}</p>
+            </li>
+            <li *ngIf="notifications.length <= 0">
+              <p> no notifications</p>
+            </li>
+            <p class="secondary-content">
+              <a class="markAll btn" (click)="markAll()">Mark all as read</a>
+            </p>
+          </ul>
         </li>
-        <li>
-          <a href="badges.html">Components</a>
-        </li>
+
         <li>
           <a (click)=logout()>Logout</a>
         </li>
+
+
       </ul>
     </div>
     <div class="nav-content">
       <div class="nav-div">
-        <img class="circle-respons-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGIhsgOg8v0G6sKe9CPsZWv3EKs6snQx6OmvEyyLvV2WTAS3d_uQ"> 
+        <img class="circle-respons-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGIhsgOg8v0G6sKe9CPsZWv3EKs6snQx6OmvEyyLvV2WTAS3d_uQ">
       </div>
       <h1 class="profile-name">{{user.username}}</h1>
       <p class="user-text">This is a test.</p>

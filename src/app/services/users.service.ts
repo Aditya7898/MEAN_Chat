@@ -24,12 +24,24 @@ export class UsersService {
   }
 
   getUserByName(username): Observable<any> {
-    return this.http.get(`${BaseUrl}/users/${username}`);
+    return this.http.get(`${BaseUrl}/username/${username}`);
   }
 
   // unfollow User
   unfollowUser(userFollowed): Observable<any> {
     return this.http.post(`${BaseUrl}/unfollow-user`, { userFollowed });
+  }
+
+  // markNotification
+  MarkNotification(id, deleteVal?): Observable<any> {
+    return this.http.post(`${BaseUrl}/mark/${id}`, { id, deleteVal });
+  }
+
+  // MarkAllAsRead
+  markAllAsRead(): Observable<any> {
+    return this.http.post(`${BaseUrl}/mark-all`, {
+      all: true
+    });
   }
 }
 

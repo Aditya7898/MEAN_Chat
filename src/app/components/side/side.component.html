@@ -2,21 +2,24 @@
     <div class="col s12 m4">
       <a>
         <span>Posts</span>
-        <p class="num">10</p>
+        <p class="num" *ngIf="userData">{{userData.posts.length}}</p>
+        <p class="num" *ngIf="!userData">0</p>
       </a>
     </div>
   
-    <div class="col s12 m4">
-      <a>
+    <div class="col s12 m4" [routerLinkActive]="['']" [routerLinkActiveOptions]="{exact: true}">
+      <a [routerLink]="['/people', 'following']">
         <span>Following</span>
-        <p class="num">10</p>
+        <p class="num" *ngIf="userData">{{userData.following.length}}</p>
+        <p class="num" *ngIf="!userData">0</p>
       </a>
     </div>
   
-    <div class="col s12 m4">
-      <a>
+    <div class="col s12 m4" [routerLinkActive]="['']" [routerLinkActiveOptions]="{exact: true}">
+      <a  [routerLink]="['/people', 'followers']">
         <span>Followers</span>
-        <p class="num">10</p>
+        <p class="num" *ngIf="userData">{{userData.followers.length}}</p>
+        <p class="num" *ngIf="!userData">0</p>
       </a>
     </div>
   </div>
@@ -70,11 +73,13 @@
     </div>
   </li>
 
-  <li class="collection-item">
-    <div>Notifications
-      <a href="#!" class="secondary-content">
-        <i class="material-icons">alarm</i>
-      </a>
-    </div>
+  <li class="collection-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+    <a [routerLink]="['/notifications']">
+      <div>Notifications
+        <a href="#!" class="secondary-content">
+          <i class="material-icons">alarm</i>
+        </a>
+      </div>
+    </a>
   </li>
 </ul>

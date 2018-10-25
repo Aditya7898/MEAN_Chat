@@ -3,9 +3,9 @@
     <div class="nav-wrapper">
       <a (click)="GoToHome()" class="brand-logo">Chatter</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-
+        <!-- first dropdown -->
         <li class="dropdown-button dropdown-trigger" data-target="dropdown">
-        <i class="fa fa-envelope" aria-hidden="true">
+        <i class="fa fa-bell" aria-hidden="true">
             <span class="nav-label-icon" *ngIf="count.length > 0">{{count.length}}</span>
         </i>
   
@@ -23,7 +23,41 @@
             </p>
           </ul>
         </li>
-
+        <li>&nbsp;&nbsp;&nbsp;</li>
+        <!-- second dropdown  -->
+        <li class="dropdown-button dropdown-trigger1" data-target="dropdown1">
+          <i class="fa fa-envelope" aria-hidden="true">
+              <span class="nav-label-icon" *ngIf="msgNum> 0">{{msgNum}}</span>
+          </i>
+    
+            <ul id='dropdown1' class='dropdown-content col s12 collection'>
+              <li class="collection-item avatar" *ngFor="let chat of chatList" (click)="goToChatPage(chat.receiverId.username)">
+                <img src="../../../assets/user.jpg" alt="" class="circle">
+                <span class="title">{{chat.receiverId.username}}
+                  <a class="secondary-content">{{MessageDate(chat.msgId.message[chat.msgId.message.length-1].createdAt)}}</a>
+                </span>
+                <p>
+                    {{chat.msgId.message[chat.msgId.message.length-1].body}}
+                  <a class="secondary-content"
+                  *ngIf="!chat.msgId.message[chat.msgId.message.length-1].isRead 
+                  && chat.receiverId.username !== chat.msgId.message[chat.msgId.message.length-1].receivername">
+                      <i class="material-icons">brightness_1</i>
+                  </a>
+                  <a class="secondary-content"  *ngIf="chat.msgId.message[chat.msgId.message.length-1].isRead">
+                      <i class="material-icons">panorama_fish_eye</i>
+                  </a>
+                </p>
+              </li>
+              <li *ngIf="notifications.length <= 0">
+                <p> no notifications</p>
+              </li>
+              <p class="secondary-content">
+                <a class="markAll btn" (click)="markAllMessages()">Mark all messages as read</a>
+              </p>
+            </ul>
+          </li>
+          <!--  -->
+          <li>&nbsp;</li>
         <li>
           <a (click)=logout()>Logout</a>
         </li>

@@ -20,6 +20,8 @@ import { TopStreamsComponent } from '../components/top-streams/top-streams.compo
 import { ChatComponent } from '../components/chat/chat.component';
 import { MessageComponent } from '../components/message/message.component';
 import { MessageService } from '../services/message.service';
+import { NgxAutoScrollModule } from 'ngx-auto-scroll';
+import { EmojiPickerModule } from 'ng2-emoji-picker';
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import { MessageService } from '../services/message.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgxAutoScrollModule,
+    EmojiPickerModule.forRoot()
   ],
   declarations: [
     StreamComponent,

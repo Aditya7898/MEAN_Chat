@@ -2,14 +2,16 @@
   <li class="collection-item avatar">
     <img src="https://res.cloudinary.com/dzihvkfzd/image/upload/v{{post.user.picVersion}}/{{post.user.picId}}" class="circle">
     <title>{{post.username}}</title>
-    <p class="time">{{TimeFromNow(post.created)}}</p>
+    <p class="time">{{TimeFromNow(post.created)}}
+      <br>@{{post.user.city}}, {{post.user.country}}
+    </p>
   </li>
   <div class="row">
     <div class="col s12">
       <div class="card">
-        <!-- <div class="card-image">
-          <img class="postImages" src="../../../assets/login.jpg" width="100px" height="150px">
-        </div> -->
+        <div class="card-image" *ngIf="post.imgId">
+          <img class="postImages" src="https://res.cloudinary.com/dzihvkfzd/image/upload/v{{post.imgVersion}}/{{post.imgId}}" width="100px" height="150px">
+        </div>
         <div class="card-content">
           <p>{{post.post}}</p>
         </div>

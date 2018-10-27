@@ -17,7 +17,7 @@
               <h3 class="card-title">
                 {{user.follower.username}}
               </h3>
-              <p>Country</p>
+              <p *ngIf="user.follower.city">{{user.follower.city}}, {{user.follower.country}}</p>
               <button  class="btn">Follower</button>
             </div>
           </div>

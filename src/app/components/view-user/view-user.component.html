@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col s12">
           <span class="title">{{name}}</span>
-          <h6>country</h6>
+          <h6 class="cityName" *ngIf="user.city">{{user.city}}, {{user.country}}</h6>
         </div>
       </div>
     </div>
@@ -37,14 +37,14 @@
                   <img class="circle" src="https://res.cloudinary.com/dzihvkfzd/image/upload/v{{user.picVersion}}/{{user.picId}}">
                   <span class="post">{{post.postId.username}}</span>
                   <p class="time">{{TimeFromNow(post.created)}}
-                    <br> Country
+                    <br> <span>@{{user.city}}, {{user.country}}</span>
                   </p>
                 </li>
                 <div class="row">
                   <div class="col s12">
                     <div class="card">
                       <div class="card-image card_image">
-                        <img class="postImage" src="http://placehold.it/100x100">
+                        <img class="postImages" *ngIf="post.postId.imgId" src="https://res.cloudinary.com/dzihvkfzd/image/upload/v{{post.postId.imgVersion}}/{{post.postId.imgId}}" width="100px" height="150px">
                       </div>
                       <div class="card-content">
                         <p>{{post.postId.post}}</p>

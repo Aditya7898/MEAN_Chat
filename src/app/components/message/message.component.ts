@@ -108,8 +108,8 @@ export class MessageComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   // get user by name
-  GetUserByUserName(name) {
-    this.userService.getUserByName(name).subscribe(data => {
+  async GetUserByUserName(name) {
+    await this.userService.getUserByName(name).subscribe(data => {
       this.receiverData = data.result;
       this.GetMessages(this.user._id, data.result._id);
       console.log(this.receiverData._id, this.receiverData.username);
@@ -180,7 +180,7 @@ export class MessageComponent implements OnInit, AfterViewInit, OnChanges {
     this._lastCaretEvent = event;
     this.eventPosMock = `{ caretOffset : ${
       event.caretOffset
-    }, caretRange: Range{...}, textContent: ${event.textContent} }`;
+      }, caretRange: Range{...}, textContent: ${event.textContent} }`;
   }
 
   Toggled() {

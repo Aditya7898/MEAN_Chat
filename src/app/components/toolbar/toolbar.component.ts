@@ -29,6 +29,8 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   count = [];
   chatList = [];
   msgNum = 0;
+  imageId: any;
+  imageVersion: any;
 
   constructor(
     private tokenService: TokenService,
@@ -41,14 +43,14 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.socket.on('usersOnline', data => {
-      console.log(data);
+      // console.log(data);
       this.onlineUsers.emit(data);
     });
   }
 
   ngOnInit() {
     this.user = this.tokenService.getPayload();
-    console.log(this.user);
+    // console.log(this.user);
 
     // online event
     this.socket.emit('online', { room: 'global', user: this.user.username });
@@ -78,6 +80,9 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   GetUser() {
     this.userService.getUserById(this.user._id).subscribe(
       data => {
+        this.imageId = data.result.picId;
+        this.imageVersion = data.result.picVersion;
+
         this.notifications = data.result.notifications.reverse();
         const value = _.filter(this.notifications, ['read', false]); // object array
         this.count = value;
@@ -115,7 +120,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
   // mark all notifications
   markAll() {
     this.userService.markAllAsRead().subscribe(data => {
-      console.log(data);
+      // console.log(data);
     });
     this.socket.emit('refresh', {});
   }
@@ -125,6 +130,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
     this.tokenService.deleteToken();
     this.router.navigate(['']);
     this.socket.emit('disconnect', {});
+    this.socket.emit('refresh', {});
   }
 
   // go to home
@@ -138,7 +144,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
     this.messageService
       .MarkMessages(this.user.username, username)
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
       });
     this.socket.emit('refresh', {});
   }
@@ -148,7 +154,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
     this.messageService.MarkAllMessages().subscribe(data => {
       this.socket.emit('refresh', {});
       this.msgNum = 0;
-      console.log(data);
+      // console.log(data);
     });
   }
 

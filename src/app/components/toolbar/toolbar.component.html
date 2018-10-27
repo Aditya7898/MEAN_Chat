@@ -11,7 +11,7 @@
   
           <ul id='dropdown' class='dropdown-content col s12 collection'>
             <li class="collection-item avatar" *ngFor="let notification of notifications">
-              <img src="../../../assets/user.jpg" alt="" class="circle">
+              <img src="https://res.cloudinary.com/dzihvkfzd/image/upload/v{{notification.senderId.picVersion}}/{{notification.senderId.picId}}" alt="" class="circle">
               <span [ngClass]="notification.read ? 'isRead' : 'unread'">{{notification.message}}</span>
               <p>{{TimeFromNow(notification.created)}}</p>
             </li>
@@ -32,7 +32,7 @@
     
             <ul id='dropdown1' class='dropdown-content col s12 collection'>
               <li class="collection-item avatar" *ngFor="let chat of chatList" (click)="goToChatPage(chat.receiverId.username)">
-                <img src="../../../assets/user.jpg" alt="" class="circle">
+                <img src="https://res.cloudinary.com/dzihvkfzd/image/upload/v{{chat.receiverId.picVersion}}/{{chat.receiverId.picId}}" alt="" class="circle">
                 <span class="title">{{chat.receiverId.username}}
                   <a class="secondary-content">{{MessageDate(chat.msgId.message[chat.msgId.message.length-1].createdAt)}}</a>
                 </span>
@@ -67,7 +67,7 @@
     </div>
     <div class="nav-content">
       <div class="nav-div">
-        <img class="circle-respons-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGIhsgOg8v0G6sKe9CPsZWv3EKs6snQx6OmvEyyLvV2WTAS3d_uQ">
+        <img class="circle-respons-img" src="https://res.cloudinary.com/dzihvkfzd/image/upload/v{{imageVersion}}/{{imageId}}">
       </div>
       <h1 class="profile-name">{{user.username}}</h1>
       <p class="user-text">This is a test.</p>

@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import io from 'socket.io-client';
 
 @Component({
   selector: 'app-chat',
@@ -8,10 +9,14 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 export class ChatComponent implements OnInit, AfterViewInit {
   online_users = [];
   tabElements: any;
-  constructor() {}
+  socket: any;
+  constructor() {
+    this.socket = io('http://localhost:3000');
+  }
 
   ngOnInit() {
     this.tabElements = document.querySelector('.nav-content');
+    this.socket.on('usersOnline', (data) => { console.log(data); });
   }
 
   ngAfterViewInit() {

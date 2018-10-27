@@ -43,8 +43,36 @@ export class UsersService {
       all: true
     });
   }
+
+  // Image
+  addImage(image): Observable<any> {
+    return this.http.post(`${BaseUrl}/upload-image`, {
+      image
+    });
+  }
+
+  //
+  setProfileImage(imageId, imageVersion): Observable<any> {
+    return this.http.get(
+      `${BaseUrl}/set-default-image/${imageId}/${imageVersion}`
+    );
+  }
+
+  // Profile Notifications
+  ProfileNotification(id): Observable<any> {
+    console.log(id);
+    return this.http.post(`${BaseUrl}/user/view-profile`, { id });
+  }
+
+  // change password
+  ChangePassword(body): Observable<any> {
+    console.log(body);
+    return this.http.post(`${BaseUrl}/change-password`, body);
+  }
 }
 
 // getAllUsers() {
 //   return await this.http.get(`${BaseUrl}/users`);
 // }
+
+// return this.http.get(`${BaseUrl}/set-default-image?id=${imageId}?version=${imageVersion}`);
